@@ -12,6 +12,8 @@ if ( ! defined( '_S_VERSION' ) ) {
 	define( '_S_VERSION', '1.0.0' );
 }
 
+require_once __DIR__ . '/inc/Qvadit_Menu.php';
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -156,6 +158,7 @@ function qvadit_scripts() {
 	wp_enqueue_style( 'qvadit-main', get_template_directory_uri() . '/assets/main.css' );
 	wp_style_add_data( 'qvadit-style', 'rtl', 'replace' );
 
+	wp_enqueue_script( 'wp-api' );
 	wp_enqueue_script( 'qvadit-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'qvadit-', get_template_directory_uri() . '/assets/main.js', array(), false, true );
 
@@ -192,3 +195,29 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+add_filter( 'excerpt_length', function(){
+	return 15;
+} );
+
+function true_excerpt_more(  ){
+	return '...';
+}
+ 
+add_filter( 'excerpt_more', 'true_excerpt_more', 10, 1);
+
+// Utilites
+
+function print_data($data) {
+	echo '<pre>' .print_r($data, 1). '</pre>'; 
+}
+
+add_filter( 'script_loader_tag', 'scripts_as_es6_modules', 10, 3 );
+
+function scripts_as_es6_modules( $tag, $handle, $src ) {
+
+	if ( 'qvadit-' === $handle) {
+		return str_replace( '<script ', '<script type="module"', $tag );
+	}
+
+	return $tag;
+}

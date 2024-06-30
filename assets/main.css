@@ -1,0 +1,265 @@
+:root {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.5;
+  font-family:
+    League Spartan,
+    sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a {
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: #ffffff;
+  text-decoration: inherit;
+
+  transition: all 0.2s ease-in;
+}
+a:hover {
+  color: #c2401c;
+}
+body {
+  margin: 0;
+  place-items: center;
+}
+h1 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 3.2rem;
+  line-height: 1.1;
+  font-family:
+    Fredericka the Great,
+    serif;
+  font-optical-sizing: auto;
+}
+.logo {
+  height: 6rem;
+  padding: 1.5rem;
+
+  transition: filter 0.3s;
+
+  will-change: filter;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2rem rgb(100 108 255 / 0.6666666667));
+}
+.logo.vanilla:hover {
+  filter: drop-shadow(0 0 2rem rgb(247 223 30 / 0.6666666667));
+}
+button {
+  padding: 0.6em 1.2rem;
+
+  font-weight: 500;
+  font-size: 1.6rem;
+  font-family: inherit;
+
+  background-color: #1a1a1a;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+p {
+  font-size: 1.5rem;
+}
+header,
+footer {
+  display: flex;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background-color: #000000;
+}
+main {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+aside {
+  background-color: #f2f2f2;
+}
+section {
+  flex-grow: 1;
+
+  background-color: #ffffff;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  max-width: 1440px;
+  height: 100vh;
+  margin: 0 auto;
+}
+.wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.main {
+  flex-grow: 1;
+  width: 100%;
+}
+.header,
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+.header__list,
+.footer__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rem;
+}
+.sheets__item {
+  display: flex;
+  align-items: center;
+}
+.sheets__item:hover {
+  color: #60777c;
+}
+.sheets__item a {
+  color: inherit;
+}
+.sheets__item.active {
+  color: #818167;
+}
+.sheets__item.active a {
+  color: inherit;
+}
+.sheets__link {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+.sheets__link h3 {
+  margin: 0;
+}
+.footer {
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+.footer__underlay {
+  position: absolute;
+  top: 33%;
+  left: 10%;
+
+  width: 40px;
+  height: 15px;
+
+  border-radius: 50%;
+}
+.footer__icon {
+  position: relative;
+  top: 3px;
+
+  margin-left: 10px;
+}
+.footer__icon svg {
+  position: relative;
+  z-index: 10;
+}
+.footer__icon:hover {
+  animation: animIcon 1s ease 0s 1 normal forwards;
+}
+.footer__icon:hover .footer__underlay {
+  animation: animEyes 1s ease 0s 1 normal forwards;
+}
+@keyframes animEyes {
+  0%,
+  50%,
+  to {
+    background-color: red;
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+@keyframes animIcon {
+  0%,
+  to {
+    transform: translate(0);
+    transform-origin: 50% 50%;
+  }
+  15% {
+    transform: translate(-10px) rotate(6deg);
+  }
+  30% {
+    transform: translate(5px) rotate(-6deg);
+  }
+  45% {
+    transform: translate(-5px) rotate(3.6deg);
+  }
+  60% {
+    transform: translate(3px) rotate(-2.4deg);
+  }
+  75% {
+    transform: translate(-1.5px) rotate(1.2deg);
+  }
+}
+#piano {
+  display: flex;
+  flex-direction: column;
+}
+.key {
+  width: 250px;
+  height: 60px;
+  padding-left: 10px;
+
+  background-color: #ffffff;
+  border: 1px solid black;
+  border-radius: 4px 0 0 4px;
+
+  transition: all 0.1s ease-in;
+}
+.key:hover {
+  cursor: pointer;
+}
+.black {
+  z-index: 100;
+
+  width: 125px;
+  height: 30px;
+  margin: -20px 0 -12px auto;
+
+  background-color: #000000;
+}
+.content {
+  min-width: 60%;
+
+  background: url(/assets/piano-KP6G-vh1.jpeg) no-repeat center;
+  box-shadow: -7px 0 8px #60777c33;
+}
+.content h1 {
+  text-align: center;
+}
+.sheet {
+  margin-left: 15px;
+  padding-top: 10px;
+
+  font-size: 19px;
+  line-height: 25px;
+
+  background-image: repeating-linear-gradient(#ffffff, #ffffff 24px, #c2401c 25px);
+}
