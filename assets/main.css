@@ -279,8 +279,8 @@ section.content {
 }
 
 .content__main {
-  background: url(../images/piano.jpeg) no-repeat;
-  background-size: 75%;
+  background: url(../images/piano.jpg) no-repeat;
+  background-size: 65%;
   background-position: center bottom;
 }
 

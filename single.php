@@ -9,6 +9,7 @@
 
 get_header();
 ?>
+<main>
 	<?php get_sidebar('piano'); ?>
 	<section class="content entry-content">
 
@@ -33,7 +34,7 @@ get_header();
 		endwhile; // End of the loop.
 		?>
 
-</section><!-- #main -->
-
+</section>
+</main><!-- #main -->
 <?php
 get_footer();

@@ -399,3 +399,8 @@ template {
   justify-content: space-between;
   margin-bottom: 15px;
 }
+
+.site-main {
+  padding-left: 35px;
+  padding-right: 35px;
+}

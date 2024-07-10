@@ -64,4 +64,3 @@
 		
 	</header><!-- #masthead -->
 	<div class="wrapper main">
-		<main>

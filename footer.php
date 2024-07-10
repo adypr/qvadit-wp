@@ -10,8 +10,7 @@
  */
 
 ?>
-		</main>
-	
+	</div>
 
 	<footer>
         <div class="wrapper footer">
@@ -39,7 +38,7 @@
           </a>
         </div>
   </footer>
-	</div>
+	
 
 <?php wp_footer(); ?>
 
