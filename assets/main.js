@@ -1,6 +1,5 @@
 import { generateKeys } from './content.js';
 
-
 let state = {
   postsData: [],
   apiUrl: 'http://localhost/qvadit/wp-json/wp/v2/posts',
@@ -51,11 +50,26 @@ getTotalPages()
   .then(() => {
     const sheets = state.postsData.map((sheet) => {
       return {
+        id: sheet.id,
         title: sheet.title.rendered,
         excerpt: sheet.excerpt.rendered,
         link: sheet.link
       }
     })
 
-    generateKeys(sheets);
+    generateKeys(sheets, getPostId());
   });
+
+  function getPostId() {
+    let body = document.body;
+    let classes = body.className.split(' ');
+    let postId = 0;
+    
+    classes.forEach(className => {
+      if (className.startsWith('postid-')) {
+        postId = Number(className.substring(7));
+      }
+    });
+    
+    return postId;
+  }

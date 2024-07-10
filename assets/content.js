@@ -4,7 +4,7 @@ const piano = document.getElementById('piano');
 
 const wpExcerpt = 10;
 
-export function generateKeys(sheets) {
+export function generateKeys(sheets, activeId) {
   if (!piano) {
     console.log('Nothing piano');
     return;
@@ -14,6 +14,7 @@ export function generateKeys(sheets) {
 
   // Creating the first two keys
   initialKeys.forEach((keyColor, index) => {
+    
       const key = document.createElement('li');
       key.classList.add('key', 'sheets__item');
       key.classList.add(keyColor);
@@ -31,11 +32,13 @@ export function generateKeys(sheets) {
           title.textContent = sheets[index - 1].title ;
           excerpt.textContent = changeExcerpt(sheets[index].excerpt, wpExcerpt);
           link.href = sheets[index - 1].link;
+          addActiveClass(link, activeId, sheets[index - 1].id);
           } 
           else {
           title.textContent = sheets[index].title;
           excerpt.textContent = changeExcerpt(sheets[index].excerpt, wpExcerpt);
           link.href = sheets[index].link;
+          addActiveClass(link, activeId, sheets[index].id);
           } 
       }
 
@@ -64,6 +67,7 @@ export function generateKeys(sheets) {
               title.textContent = sheets[songIndex].title;
               excerpt.textContent = changeExcerpt(sheets[songIndex].excerpt, wpExcerpt);
               link.href = sheets[songIndex].link;
+              addActiveClass(link, activeId, sheets[songIndex].id);
               songIndex++;
           }
 
@@ -92,6 +96,11 @@ const changeExcerpt = (input, maxLength) => {
 function decodeEntities(input) {
   var doc = new DOMParser().parseFromString(input, "text/html");
   return doc.documentElement.textContent;
+}
+
+function addActiveClass (link, sheetId, linkId) {
+  if (sheetId === 0 || sheetId !== linkId) return;
+  link.classList.add('active');
 }
 
 animationPiano(piano);
