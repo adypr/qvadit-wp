@@ -1,9 +1,15 @@
 import animationPiano from "./animationPiano.js";
 
 const piano = document.getElementById('piano');
+
 const wpExcerpt = 10;
 
 export function generateKeys(sheets) {
+  if (!piano) {
+    console.log('Nothing piano');
+    return;
+  } 
+
   const initialKeys = ['white', 'black', 'white'];
 
   // Creating the first two keys
@@ -22,12 +28,14 @@ export function generateKeys(sheets) {
           key.appendChild(link);
       
           if (index === 2) {
-          title.textContent = sheets[index -1].title ;
+          title.textContent = sheets[index - 1].title ;
           excerpt.textContent = changeExcerpt(sheets[index].excerpt, wpExcerpt);
+          link.href = sheets[index - 1].link;
           } 
           else {
           title.textContent = sheets[index].title;
           excerpt.textContent = changeExcerpt(sheets[index].excerpt, wpExcerpt);
+          link.href = sheets[index].link;
           } 
       }
 
@@ -55,6 +63,7 @@ export function generateKeys(sheets) {
               key.appendChild(link);
               title.textContent = sheets[songIndex].title;
               excerpt.textContent = changeExcerpt(sheets[songIndex].excerpt, wpExcerpt);
+              link.href = sheets[songIndex].link;
               songIndex++;
           }
 

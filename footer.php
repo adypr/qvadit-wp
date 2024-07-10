@@ -11,24 +11,35 @@
 
 ?>
 		</main>
-	</div>
+	
 
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'qvadit' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'qvadit' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'qvadit' ), 'qvadit', '<a href="http://underscores.me/">Underscores.me</a>' );
-				?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
+	<footer>
+        <div class="wrapper footer">
+          <p>
+            QVadit © 2024
+          </p>
+          <nav id="site-navigation" class="main-navigation">
+            <?php
+            wp_nav_menu(
+              array(
+                'theme_location' => 'menu-2',
+                'menu_id'        => 'footer-menu',
+                'container'				=> 'nav',
+                'container_class'	=> 'header__nav',
+                'menu_class' 			=> 'header__list',
+                'walker'          => new Qvadit_Main_Menu(),
+              )
+            );
+            ?>
+		      </nav>
+          <a href="https://discordapp.com/users/318713674372218880" class="footer__icon">
+            <div class="footer__underlay"></div>
+            <svg id="discord" width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"><path fill="#fff"
+             d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>
+          </a>
+        </div>
+  </footer>
+	</div>
 
 <?php wp_footer(); ?>
 

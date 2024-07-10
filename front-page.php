@@ -1,11 +1,8 @@
 <?php get_header(); ?>
 
-<aside>
-  <ul class="sheets" id="piano">
-  </ul>
-</aside>
-<section class="content">
-  the content
+<?php get_sidebar('piano'); ?>
+<section class="content content__main">
+  <h1>My music blog</h1>
 </section>
 <?php
 get_footer();

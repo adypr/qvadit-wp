@@ -18,7 +18,7 @@ async function getTotalPages() {
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
-  const totalPages = response.headers.get('x-wp-totalpages');
+  const totalPages = await response.headers.get('x-wp-totalpages');
   return totalPages;
 }
 
@@ -52,7 +52,8 @@ getTotalPages()
     const sheets = state.postsData.map((sheet) => {
       return {
         title: sheet.title.rendered,
-        excerpt: sheet.excerpt.rendered
+        excerpt: sheet.excerpt.rendered,
+        link: sheet.link
       }
     })
 

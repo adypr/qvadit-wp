@@ -1,5 +1,7 @@
 
 export default  (piano) => {
+
+  if (!piano) return;
   
   piano.addEventListener('mousedown', (event) => {
     if (event.target.closest('.key')) {
@@ -25,8 +27,6 @@ export default  (piano) => {
 
   piano.addEventListener('click', (event) => {
     if (event.target.closest('.key')) {
-
-    event.preventDefault();
   }
   });
 }

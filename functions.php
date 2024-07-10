@@ -12,7 +12,7 @@ if ( ! defined( '_S_VERSION' ) ) {
 	define( '_S_VERSION', '1.0.0' );
 }
 
-require_once __DIR__ . '/inc/Qvadit_Menu.php';
+require_once __DIR__ . '/inc/Qvadit_Main_Menu.php';
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -52,6 +52,7 @@ function qvadit_setup() {
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', 'qvadit' ),
+			'menu-2' => esc_html__( 'Footer', 'qvadit' ),
 		)
 	);
 

@@ -1,5 +1,5 @@
 <?php
-class Qvadit_Menu extends Walker_Nav_Menu {
+class Qvadit_Main_Menu extends Walker_Nav_Menu {
 
 	// add classes to ul sub-menus
 	function start_lvl( &$output, $depth = 0, $args = NULL ) {
