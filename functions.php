@@ -222,3 +222,28 @@ function scripts_as_es6_modules( $tag, $handle, $src ) {
 
 	return $tag;
 }
+function all_posts_shortcode() {
+	$query = new WP_Query(array(
+			'posts_per_page' => -1
+	));
+
+	if ($query->have_posts()) {
+			$output = '<ul>';
+
+			while ($query->have_posts()) {
+					$query->the_post();
+					$excerpt = get_the_excerpt();
+					$short_excerpt = mb_substr($excerpt, 0, 15) . '...';
+					$output .= '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a> <span class="post-excerpt">' . $short_excerpt . '</span></li>';
+			}
+
+			$output .= '</ul>';
+			wp_reset_postdata();
+	} else {
+			$output = '<p>No posts found.</p>';
+	}
+
+	return $output;
+}
+add_shortcode('all_posts', 'all_posts_shortcode');
+
