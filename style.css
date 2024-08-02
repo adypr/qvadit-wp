@@ -404,3 +404,9 @@ template {
   padding-left: 35px;
   padding-right: 35px;
 }
+
+.entry-title {
+  @media (max-width: 640px) {
+    font-size: 2rem;
+  }
+}

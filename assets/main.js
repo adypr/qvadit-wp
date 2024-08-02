@@ -1,4 +1,5 @@
 import { generateKeys } from './content.js';
+import dropDown from './dropDown.js';
 
 let state = {
   postsData: [],
@@ -83,3 +84,5 @@ getTotalPages()
       }
     }
   });
+
+  dropDown();

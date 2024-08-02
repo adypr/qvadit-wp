@@ -1,4 +1,4 @@
-<aside id="custom-content" class="widget-area">
+<aside id="custom-content" class="widget-area" style="display: none;">
     <ul class="sheets" id="piano">
     </ul>
 </aside>
@@ -18,12 +18,20 @@
         function toggleSidebarContent() {
             var sidebarContent = document.getElementById('sidebar-content');
             var customContent = document.getElementById('custom-content');
-            if (window.innerWidth > 850) {
-                customContent.style.display = 'block';
-                sidebarContent.style.display = 'none';
+            var postsDropdown = document.getElementById('posts-dropdown');
+
+            if (window.innerWidth <= 640) {
+                if (postsDropdown) postsDropdown.style.display = 'block';
+                if (sidebarContent) sidebarContent.style.display = 'none';
+                if (customContent) customContent.style.display = 'none';
+            } else if (window.innerWidth > 640 && window.innerWidth <= 850) {
+                if (postsDropdown) postsDropdown.style.display = 'none';
+                if (sidebarContent) sidebarContent.style.display = 'block';
+                if (customContent) customContent.style.display = 'none';
             } else {
-                customContent.style.display = 'none';
-                sidebarContent.style.display = 'block';
+                if (postsDropdown) postsDropdown.style.display = 'none';
+                if (sidebarContent) sidebarContent.style.display = 'none';
+                if (customContent) customContent.style.display = 'block';
             }
         }
 

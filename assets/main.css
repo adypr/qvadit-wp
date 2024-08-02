@@ -64,7 +64,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #c2401c;
 }
 button:focus,
 button:focus-visible {
@@ -103,6 +103,91 @@ section {
 
   background-color: #ffffff;
 }
+
+#sidebar-content ul {
+  @media (max-width: 850px) {
+    padding: 10px 0 10px 10px;
+  }
+}
+
+#sidebar-content li {
+  @media (max-width: 850px) {
+    padding: 10px;
+  }
+}
+
+#sidebar-content a {
+  @media (max-width: 850px) {
+    color: black;
+    line-height: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+}
+
+#sidebar-content a:hover {
+  @media (max-width: 850px) {
+    color: #c2401c;
+  }
+  
+}
+
+#sidebar-content span {
+  @media (max-width: 850px) {
+    font-size: 1.2rem;
+    color: gray;
+  }
+}
+
+#sidebar-content a:hover span {
+  @media (max-width: 850px) {
+    color: #c2401c;
+  }
+}
+
+#sidebar-content li.active {
+  background-color: white;
+  border-radius: 5px 0 0 5px;
+  border-width: 1px 0 1px 1px;
+  border-style: solid;
+  border-color: grey;
+}
+
+#posts-dropdown {
+  display: none;
+  font-weight: 400;
+  font-size: 1.6rem;
+  font-family: League Spartan, sans-serif;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px 8px 0 0;
+  padding: 0.6em 1.2rem;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s;
+  text-align: center;
+}
+
+#posts-dropdown option {
+  font-weight: 400;
+  font-size: 1.6rem;
+  font-family: League Spartan, sans-serif;
+  margin-bottom: 5px;
+}
+
+#posts-dropdown:hover {
+  border-color: #c2401c;
+}
+
+#posts-dropdown:focus {
+  outline: 4px auto -webkit-focus-ring-color;
+  border-color: #c2401c;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -128,7 +213,8 @@ section {
 .footer__list {
   display: flex;
   flex-wrap: wrap;
-  gap: 5rem;
+  justify-content: center;
+  gap: 10px 7vw;
 }
 
 .sheets {
@@ -257,6 +343,7 @@ section {
 
   background-color: #ffffff;
   border: 1px solid black;
+  border-right: none;
   border-radius: 4px 0 0 4px;
 
   transition: all 0.1s ease-in;
@@ -279,11 +366,12 @@ section.content {
 }
 
 .content {
-  min-width: 60%;
+ 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
+  border-left: 1px solid grey;
   box-shadow: -7px 0 8px #60777c33;
   z-index: 100;
   min-height: 100%;
@@ -326,4 +414,9 @@ section.content {
 .entry-header {
   display: flex;
   flex-direction: column;
+}
+
+
+.footer #site-navigation {
+  width: 100%;
 }

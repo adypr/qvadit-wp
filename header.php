@@ -60,6 +60,7 @@
 			);
 			?>
 		</nav><!-- #site-navigation -->
+		<?php echo do_shortcode('[dropdown_posts]'); ?>
 		</div>
 		
 	</header><!-- #masthead -->

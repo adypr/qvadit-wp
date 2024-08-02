@@ -222,6 +222,7 @@ function scripts_as_es6_modules( $tag, $handle, $src ) {
 
 	return $tag;
 }
+
 function all_posts_shortcode() {
 	$query = new WP_Query(array(
 			'posts_per_page' => -1
@@ -234,7 +235,13 @@ function all_posts_shortcode() {
 					$query->the_post();
 					$excerpt = get_the_excerpt();
 					$short_excerpt = mb_substr($excerpt, 0, 15) . '...';
-					$output .= '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a> <span class="post-excerpt">' . $short_excerpt . '</span></li>';
+					
+					$active_class = '';
+					if (is_single() && get_the_ID() == get_queried_object_id()) {
+							$active_class = ' class="active"';
+					}
+
+					$output .= '<li' . $active_class . '><a href="' . get_permalink() . '">' . get_the_title() . ' <span class="post-excerpt">' . $short_excerpt . '</span></a></li>';
 			}
 
 			$output .= '</ul>';
@@ -247,3 +254,27 @@ function all_posts_shortcode() {
 }
 add_shortcode('all_posts', 'all_posts_shortcode');
 
+
+function dropdown_posts_shortcode() {
+	$query = new WP_Query(array(
+			'posts_per_page' => -1
+	));
+
+	if ($query->have_posts()) {
+			$output = '<select id="posts-dropdown" onchange="if (this.value) window.location.href=this.value">';
+			$output .= '<option value="">' . __('Select Post', 'qvadit') . '</option>';
+
+			while ($query->have_posts()) {
+					$query->the_post();
+					$output .= '<option value="' . get_permalink() . '">' . get_the_title() . '</option>';
+			}
+
+			$output .= '</select>';
+			wp_reset_postdata();
+	} else {
+			$output = '<p>No posts found.</p>';
+	}
+
+	return $output;
+}
+add_shortcode('dropdown_posts', 'dropdown_posts_shortcode');
