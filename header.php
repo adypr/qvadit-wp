@@ -22,11 +22,12 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<div id="page" class="site">
+<div id="page" class="site container">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'qvadit' ); ?></a>
 
 	<header id="masthead" class="site-header">
-		<div class="site-branding">
+		<div class="wrapper">
+			<div class="site-branding">
 			<?php
 			the_custom_logo();
 			if ( is_front_page() && is_home() ) :
@@ -46,14 +47,21 @@
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'qvadit' ); ?></button>
 			<?php
 			wp_nav_menu(
 				array(
 					'theme_location' => 'menu-1',
 					'menu_id'        => 'primary-menu',
+					'container'				=> 'nav',
+					'container_class'	=> 'header__nav',
+					'menu_class' 			=> 'header__list',
+					'walker'          => new Qvadit_Main_Menu(),
 				)
 			);
 			?>
 		</nav><!-- #site-navigation -->
+		<?php echo do_shortcode('[dropdown_posts]'); ?>
+		</div>
+		
 	</header><!-- #masthead -->
+	<div class="wrapper main">

@@ -9,7 +9,7 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php
 		if ( is_singular() ) :
@@ -23,7 +23,6 @@
 			<div class="entry-meta">
 				<?php
 				qvadit_posted_on();
-				qvadit_posted_by();
 				?>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
@@ -31,7 +30,7 @@
 
 	<?php qvadit_post_thumbnail(); ?>
 
-	<div class="entry-content">
+	<article class="sheet">
 		<?php
 		the_content(
 			sprintf(
@@ -55,9 +54,6 @@
 			)
 		);
 		?>
-	</div><!-- .entry-content -->
+	</article><!-- .entry-content -->
 
-	<footer class="entry-footer">
-		<?php qvadit_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
+	</div><!-- #post-<?php the_ID(); ?> -->

@@ -12,6 +12,8 @@ if ( ! defined( '_S_VERSION' ) ) {
 	define( '_S_VERSION', '1.0.0' );
 }
 
+require_once __DIR__ . '/inc/Qvadit_Main_Menu.php';
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -50,6 +52,7 @@ function qvadit_setup() {
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', 'qvadit' ),
+			'menu-2' => esc_html__( 'Footer', 'qvadit' ),
 		)
 	);
 
@@ -156,6 +159,7 @@ function qvadit_scripts() {
 	wp_enqueue_style( 'qvadit-main', get_template_directory_uri() . '/assets/main.css' );
 	wp_style_add_data( 'qvadit-style', 'rtl', 'replace' );
 
+	wp_enqueue_script( 'wp-api' );
 	wp_enqueue_script( 'qvadit-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'qvadit-', get_template_directory_uri() . '/assets/main.js', array(), false, true );
 
@@ -192,3 +196,85 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+add_filter( 'excerpt_length', function(){
+	return 15;
+} );
+
+function true_excerpt_more(  ){
+	return '...';
+}
+ 
+add_filter( 'excerpt_more', 'true_excerpt_more', 10, 1);
+
+// Utilites
+
+function print_data($data) {
+	echo '<pre>' .print_r($data, 1). '</pre>'; 
+}
+
+add_filter( 'script_loader_tag', 'scripts_as_es6_modules', 10, 3 );
+
+function scripts_as_es6_modules( $tag, $handle, $src ) {
+
+	if ( 'qvadit-' === $handle) {
+		return str_replace( '<script ', '<script type="module"', $tag );
+	}
+
+	return $tag;
+}
+
+function all_posts_shortcode() {
+	$query = new WP_Query(array(
+			'posts_per_page' => -1
+	));
+
+	if ($query->have_posts()) {
+			$output = '<ul>';
+
+			while ($query->have_posts()) {
+					$query->the_post();
+					$excerpt = get_the_excerpt();
+					$short_excerpt = mb_substr($excerpt, 0, 15) . '...';
+					
+					$active_class = '';
+					if (is_single() && get_the_ID() == get_queried_object_id()) {
+							$active_class = ' class="active"';
+					}
+
+					$output .= '<li' . $active_class . '><a href="' . get_permalink() . '">' . get_the_title() . ' <span class="post-excerpt">' . $short_excerpt . '</span></a></li>';
+			}
+
+			$output .= '</ul>';
+			wp_reset_postdata();
+	} else {
+			$output = '<p>No posts found.</p>';
+	}
+
+	return $output;
+}
+add_shortcode('all_posts', 'all_posts_shortcode');
+
+
+function dropdown_posts_shortcode() {
+	$query = new WP_Query(array(
+			'posts_per_page' => -1
+	));
+
+	if ($query->have_posts()) {
+			$output = '<select id="posts-dropdown" onchange="if (this.value) window.location.href=this.value">';
+			$output .= '<option value="">' . __('Select Post', 'qvadit') . '</option>';
+
+			while ($query->have_posts()) {
+					$query->the_post();
+					$output .= '<option value="' . get_permalink() . '">' . get_the_title() . '</option>';
+			}
+
+			$output .= '</select>';
+			wp_reset_postdata();
+	} else {
+			$output = '<p>No posts found.</p>';
+	}
+
+	return $output;
+}
+add_shortcode('dropdown_posts', 'dropdown_posts_shortcode');
