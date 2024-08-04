@@ -204,6 +204,19 @@ section {
   flex-grow: 1;
   width: 100%;
 }
+
+.main h2 {
+  font-size: 1.8rem;
+}
+
+.main a {
+  color: black;
+}
+
+.main a:hover {
+  color: #c2401c;
+}
+
 .header,
 .footer {
   display: flex;

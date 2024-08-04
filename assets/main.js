@@ -75,14 +75,4 @@ getTotalPages()
     return postId;
   }
 
-  document.getElementById('piano').addEventListener('click', function(event) {
-    const listItem = event.target.closest('.sheets__item.white');
-    if (listItem) {
-      const link = listItem.querySelector('a');
-      if (link) {
-        window.location.href = link.href;
-      }
-    }
-  });
-
   dropDown();
